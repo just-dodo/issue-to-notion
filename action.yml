@@ -1,4 +1,5 @@
 name : issue-to-notion
 description : From github Issue Make Notion Card
-icon : activity
-color : yellow
+label:
+  icon : activity
+  color : yellow
