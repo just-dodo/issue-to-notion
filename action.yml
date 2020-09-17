@@ -1,5 +1,6 @@
 name : issue-to-notion
 description : From github Issue Make Notion Card
-label:
+author : Dohyeon Park
+branding:
   icon : activity
   color : yellow
