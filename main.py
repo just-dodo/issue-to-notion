@@ -89,9 +89,10 @@ def clear_page(row):
 def get_row_with_IssueNumber(number):
     global cv
 
-    print('issue number is', int(number))
+    print('issue number is', number)
+
     exact_ID_filter_params = {
-        'filters': [{'property': "title", 'filter': {'operator': "string_starts_with", 'value': {'type': "exact", 'value': "[#"+str(number)}}}],
+        'filters': [{'property': "title", 'filter': {'operator': "string_starts_with", 'value': {'type': "exact", 'value': '[#'+str(number)+']'}}}],
         'operator': "and"
     }
     rows = cv.build_query(filter=exact_ID_filter_params).execute()
