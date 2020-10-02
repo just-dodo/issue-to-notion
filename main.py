@@ -22,6 +22,8 @@ client = NotionClient(token_v2=token)
 cv = client.get_collection_view(database_url)
 
 def main():
+    print("main() is excuted")
+
     global github_event_json
     global cv
 
@@ -30,6 +32,8 @@ def main():
     card_number = github_event_json["issue"]["number"]
     card_title = github_event_json["issue"]["title"]
     card_link = github_event_json["issue"]["html_url"]
+
+    print("action_type is ",action_type)
 
     # Check action type
     if action_type == "opened":
@@ -69,7 +73,7 @@ def main():
 
 
 def upload_body_with_markdown(row):
-    
+
     body = github_event_json["issue"]["body"]
         
     # Make markdown file from issue body
