@@ -47,19 +47,21 @@ if action_type == "opened":
     # Upload issue body markdown file to row
     with open("body.md", "r", encoding="utf-8") as mdFile:
         upload(mdFile,row)
-        
-elif action_type == "edited":
-    pass
-# TODO
-elif action_type == "closed":
-    pass
-# TODO
-elif action_type == "deleted":
-    pass
-# TODO
-elif action_type == "reopened":
-    pass
-# TODO
-elif action_type == "labeled" or action_type == "unlabeled":
-    pass
-# TODO
+else:
+    row = cv.collection.get_rows(ID=card_number)[0]
+
+    if action_type == "edited":
+        pass
+    # TODO
+    elif action_type == "closed":
+        pass
+    # TODO
+    elif action_type == "deleted":
+        pass
+    # TODO
+    elif action_type == "reopened":
+        pass
+    # TODO
+    elif action_type == "labeled" or action_type == "unlabeled":
+        pass
+    # TODO
