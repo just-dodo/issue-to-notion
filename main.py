@@ -27,11 +27,11 @@ def main():
     global github_event_json
     global cv
 
-    # Set card title, body and link
+    # Get issue title, body and link
     action_type = github_event_json["action"]
-    card_number = github_event_json["issue"]["number"]
-    card_title = github_event_json["issue"]["title"]
-    card_link = github_event_json["issue"]["html_url"]
+    issue_number = github_event_json["issue"]["number"]
+    issue_title = github_event_json["issue"]["title"]
+    issue_link = github_event_json["issue"]["html_url"]
 
     print("action_type is",action_type)
 
@@ -40,18 +40,18 @@ def main():
 
         # Add row to notion collection
         row = cv.collection.add_row()
-        row.name = "[#"+card_number+"] "+card_title
+        row.name = "[#"+issue_number+"] "+issue_title
         row.state = 'open'
 
         # Add Bookmark for issue
-        row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
+        row.children.add_new(BookmarkBlock, title=issue_title, link=issue_link)
         upload_body_with_markdown(row)
     else:
-        row = get_row_with_IssueNumber(card_number)
+        row = get_row_with_IssueNumber(issue_number)
 
         if action_type == "edited":
             clear_page(row)
-            row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
+            row.children.add_new(BookmarkBlock, title=issue_title, link=issue_link)
             upload_body_with_markdown(row)
 
         elif action_type == "closed":
@@ -89,7 +89,7 @@ def clear_page(row):
 def get_row_with_IssueNumber(number):
     global cv
 
-    print('card number is', int(number))
+    print('issue number is', int(number))
     exact_ID_filter_params = {
         'filters': [{'property': "title", 'filter': {'operator': "string_starts_with", 'value': {'type': "exact", 'value': "[#"+number}}}],
         'operator': "and"
