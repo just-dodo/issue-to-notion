@@ -27,41 +27,42 @@ card_link = github_event_json["issue"]["html_url"]
 client = NotionClient(token_v2=token)
 cv = client.get_collection_view(database_url)
 
-# Check action type
-if action_type == "opened":
+def main():
+    # Check action type
+    if action_type == "opened":
 
-    # Add row to notion collection
-    row = cv.collection.add_row()
-    row.name = card_title
-    row.ID = card_number
-    row.state = 'open'
-
-    # Add Bookmark for issue
-    row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
-    upload_body_with_markdown(row)
-else:
-    exact_ID_filter_params ={
-    'filters': [{'property': "@L;B",'filter': {'operator': "number_equals", 'value': {'type': "exact", 'value': card_number}}}]
-    }
-    row = cv.collection.get_rows(filter=exact_ID_filter_params)[0]
-
-    if action_type == "edited":
-        clear_page(row)
-        row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
-        upload_body_with_markdown(row)
-
-    elif action_type == "closed":
-        row.state = 'closed'
-
-    elif action_type == "deleted":
-        pass
-    # TODO
-    elif action_type == "reopened":
+        # Add row to notion collection
+        row = cv.collection.add_row()
+        row.name = card_title
+        row.ID = card_number
         row.state = 'open'
 
-    elif action_type == "labeled" or action_type == "unlabeled":
-        pass
-    # TODO
+        # Add Bookmark for issue
+        row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
+        upload_body_with_markdown(row)
+    else:
+        exact_ID_filter_params ={
+        'filters': [{'property': "@L;B",'filter': {'operator': "number_equals", 'value': {'type': "exact", 'value': card_number}}}]
+        }
+        row = cv.collection.get_rows(filter=exact_ID_filter_params)[0]
+
+        if action_type == "edited":
+            clear_page(row)
+            row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
+            upload_body_with_markdown(row)
+
+        elif action_type == "closed":
+            row.state = 'closed'
+
+        elif action_type == "deleted":
+            pass
+        # TODO
+        elif action_type == "reopened":
+            row.state = 'open'
+
+        elif action_type == "labeled" or action_type == "unlabeled":
+            pass
+        # TODO
 
 
 def upload_body_with_markdown(row):
@@ -80,3 +81,5 @@ def upload_body_with_markdown(row):
 def clear_page(row):
     for child in row.children:
         child.remove()
+
+main()
