@@ -43,8 +43,10 @@ else:
     row = cv.collection.get_rows(ID=card_number)[0]
 
     if action_type == "edited":
-        pass
-    # TODO
+        clear_page(row)
+        row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
+        upload_body_with_markdown(row)
+        
     elif action_type == "closed":
         row.state = 'closed'
 
@@ -71,3 +73,7 @@ def upload_body_with_markdown(row):
     # Upload issue body markdown file to row
     with open("body.md", "r", encoding="utf-8") as mdFile:
         upload(mdFile,row)
+
+def clear_page(row):
+    for child in row.children:
+        child.remove()
