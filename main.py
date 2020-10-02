@@ -40,7 +40,7 @@ def main():
 
         # Add row to notion collection
         row = cv.collection.add_row()
-        row.name = "[#"+issue_number+"] "+issue_title
+        row.name = "[#"+str(issue_number)+"] "+issue_title
         row.state = 'open'
 
         # Add Bookmark for issue
@@ -91,7 +91,7 @@ def get_row_with_IssueNumber(number):
 
     print('issue number is', int(number))
     exact_ID_filter_params = {
-        'filters': [{'property': "title", 'filter': {'operator': "string_starts_with", 'value': {'type': "exact", 'value': "[#"+number}}}],
+        'filters': [{'property': "title", 'filter': {'operator': "string_starts_with", 'value': {'type': "exact", 'value': "[#"+str(number)}}}],
         'operator': "and"
     }
     rows = cv.build_query(filter=exact_ID_filter_params).execute()
