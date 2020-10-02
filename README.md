@@ -1,8 +1,8 @@
 # issue-to-notion
 This action make **ISSUEs affect TO NOTION cards**.
 1. When an issue OPENed, notion card will be created.
-2. When an issue CLOSEed, notion card will get closed tag. (comming soon)
-3. When an issue EDITed, notion card will be edited. (comming soon)
+2. When an issue CLOSEed, notion card will be closed tag.
+3. When an issue EDITed, notion card will be edited.
 4. When an issue get TAGs, notion card will get them all. (comming soon)
 
 ## Usage
