@@ -50,7 +50,8 @@ def main():
     else:
         print('card number is', card_number)
         exact_ID_filter_params ={
-        'filters': [{'property': "@L;B",'filter': {'operator': "number_equals", 'value': {'type': "exact", 'value': int(card_number)}}}]
+        'filters': [{'property': "@L;B",'filter': {'operator': "number_equals", 'value': {'type': "exact", 'value': int(card_number)}}}],
+        'operator': "and"
         }
         row = cv.collection.get_rows(filter=exact_ID_filter_params)[0]
 
