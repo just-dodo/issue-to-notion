@@ -53,7 +53,7 @@ def main():
         'filters': [{'property': "@L;B",'filter': {'operator': "number_equals", 'value': {'type': "exact", 'value': int(card_number)}}}],
         'operator': "and"
         }
-        rows = cv.collection.get_rows(filter=exact_ID_filter_params)
+        rows = cv.build_query(filter=exact_ID_filter_params).execute()
         print('filtered rows :',rows)
         row = rows[0]
         print('first row :',row)
