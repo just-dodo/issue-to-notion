@@ -37,5 +37,5 @@ jobs:
 
 ## Dependency 
 This action uses  
-[notion-py](https://github.com/jamalex/notion-py)   
-[md2notion](https://github.com/Cobertos/md2notion)
++ [notion-py](https://github.com/jamalex/notion-py)   
++ [md2notion](https://github.com/Cobertos/md2notion)
