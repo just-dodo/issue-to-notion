@@ -40,32 +40,14 @@ def main():
 
         # Add row to notion collection
         row = cv.collection.add_row()
-        row.name = card_title
-        row.ID = card_number
+        row.name = "[#"+card_number+"] "+card_title
         row.state = 'open'
 
         # Add Bookmark for issue
         row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
         upload_body_with_markdown(row)
     else:
-        print('card number is', int(card_number))
-        exact_ID_filter_params = {
-            'filters': [{
-                'property': "ID",
-                'filter': {
-                    'operator': "number_equals",
-                    'value': {
-                        'type': "exact",
-                        'value': int(card_number)
-                    },
-                },
-            }],
-            'operator': "and"
-        }
-        rows = cv.build_query(filter=exact_ID_filter_params).execute()
-        print('filtered rows :',rows)
-        row = rows[0]
-        print('first row :',row)
+        row = get_row_with_IssueNumber(card_number)
 
         if action_type == "edited":
             clear_page(row)
@@ -103,5 +85,17 @@ def upload_body_with_markdown(row):
 def clear_page(row):
     for child in row.children:
         child.remove()
+
+def get_row_with_IssueNumber(number):
+    global cv
+
+    print('card number is', int(number))
+    exact_ID_filter_params = {
+        'filters': [{'property': "title", 'filter': {'operator': "string_starts_with", 'value': {'type': "exact", 'value': "[#"+number}}}],
+        'operator': "and"
+    }
+    rows = cv.build_query(filter=exact_ID_filter_params).execute()
+    print('filtered rows :',rows)
+    return rows[0]
 
 main()
