@@ -28,12 +28,12 @@ f= open("body.md","w+")
 f.write(card_body)
 f.close()
 
+# Login and go into collection
+client = NotionClient(token_v2=token)
+cv = client.get_collection_view(database_url)
+
 # Check action type
 if action_type == "opened":
-
-    # Login and go into collection
-    client = NotionClient(token_v2=token)
-    cv = client.get_collection_view(database_url)
 
     # Add row to notion collection
     row = cv.collection.add_row()
@@ -47,5 +47,17 @@ if action_type == "opened":
         upload(mdFile,row)
         
 elif action_type == "edited":
+    pass
+# TODO
+elif action_type == "closed":
+    pass
+# TODO
+elif action_type == "deleted":
+    pass
+# TODO
+elif action_type == "reopened":
+    pass
+# TODO
+elif action_type == "labeled" or action_type == "unlabeled":
     pass
 # TODO
