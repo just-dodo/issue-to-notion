@@ -41,7 +41,7 @@ if action_type == "opened":
     upload_body_with_markdown(row)
 else:
     exact_ID_filter_params ={
-    'filters': [{filter: {'operator': "number_equals", 'value': {'type': "exact", 'value': card_number}}}]
+    'filters': [{'property': "@L;B",'filter': {'operator': "number_equals", 'value': {'type': "exact", 'value': card_number}}}]
     }
     row = cv.collection.get_rows(filter=exact_ID_filter_params)[0]
 
