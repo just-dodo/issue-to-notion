@@ -40,6 +40,7 @@ if action_type == "opened":
     row = cv.collection.add_row()
     row.name = card_title
     row.ID = card_number
+    row.state = 'open'
 
     # Add Bookmark for issue
     row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
@@ -54,14 +55,14 @@ else:
         pass
     # TODO
     elif action_type == "closed":
-        pass
-    # TODO
+        row.state = 'closed'
+
     elif action_type == "deleted":
         pass
     # TODO
     elif action_type == "reopened":
-        pass
-    # TODO
+        row.state = 'open'
+        
     elif action_type == "labeled" or action_type == "unlabeled":
         pass
     # TODO
