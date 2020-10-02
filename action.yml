@@ -4,3 +4,6 @@ author : Dohyeon Park
 branding:
   icon : activity
   color : yellow
+runs: 
+  using: 'docker'
+  image: 'Dockerfile'
