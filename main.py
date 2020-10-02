@@ -53,7 +53,10 @@ def main():
         'filters': [{'property': "@L;B",'filter': {'operator': "number_equals", 'value': {'type': "exact", 'value': int(card_number)}}}],
         'operator': "and"
         }
-        row = cv.collection.get_rows(filter=exact_ID_filter_params)[0]
+        rows = cv.collection.get_rows(filter=exact_ID_filter_params)
+        print('filtered rows :',rows)
+        row = rows[0]
+        print('first row :',row)
 
         if action_type == "edited":
             clear_page(row)
