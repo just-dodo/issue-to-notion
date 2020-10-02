@@ -19,6 +19,7 @@ github_event_json = json.loads(github_event_str)
 
 # Set card title, body and link
 action_type = github_event_json["action"]
+card_number = github_event_json["issue"]["number"]
 card_title = github_event_json["issue"]["title"]
 card_body = github_event_json["issue"]["body"]
 card_link = github_event_json["issue"]["html_url"]
@@ -38,6 +39,7 @@ if action_type == "opened":
     # Add row to notion collection
     row = cv.collection.add_row()
     row.name = card_title
+    row.ID = card_number
 
     # Add Bookmark for issue
     row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
