@@ -73,7 +73,8 @@ def main():
 
 
 def upload_body_with_markdown(row):
-
+    global github_event_json
+    
     body = github_event_json["issue"]["body"]
         
     # Make markdown file from issue body
