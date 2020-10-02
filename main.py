@@ -48,10 +48,19 @@ def main():
         row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
         upload_body_with_markdown(row)
     else:
-        print('card number is', card_number)
-        exact_ID_filter_params ={
-        'filters': [{'property': "@L;B",'filter': {'operator': "number_equals", 'value': {'type': "exact", 'value': int(card_number)}}}],
-        'operator': "and"
+        print('card number is', int(card_number))
+        exact_ID_filter_params = {
+            'filters': [{
+                'property': "ID",
+                'filter': {
+                    'operator': "number_equals",
+                    'value': {
+                        'type': "exact",
+                        'value': int(card_number)
+                    },
+                },
+            }],
+            'operator': "and"
         }
         rows = cv.build_query(filter=exact_ID_filter_params).execute()
         print('filtered rows :',rows)
