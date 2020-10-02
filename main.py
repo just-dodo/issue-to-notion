@@ -33,7 +33,7 @@ def main():
     card_title = github_event_json["issue"]["title"]
     card_link = github_event_json["issue"]["html_url"]
 
-    print("action_type is ",action_type)
+    print("action_type is",action_type)
 
     # Check action type
     if action_type == "opened":
@@ -48,8 +48,9 @@ def main():
         row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
         upload_body_with_markdown(row)
     else:
+        print('card number is', card_number)
         exact_ID_filter_params ={
-        'filters': [{'property': "@L;B",'filter': {'operator': "number_equals", 'value': {'type': "exact", 'value': card_number}}}]
+        'filters': [{'property': "@L;B",'filter': {'operator': "number_equals", 'value': {'type': "exact", 'value': int(card_number)}}}]
         }
         row = cv.collection.get_rows(filter=exact_ID_filter_params)[0]
 
@@ -74,7 +75,7 @@ def main():
 
 def upload_body_with_markdown(row):
     global github_event_json
-    
+
     body = github_event_json["issue"]["body"]
         
     # Make markdown file from issue body
