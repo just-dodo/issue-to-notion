@@ -40,13 +40,16 @@ if action_type == "opened":
     row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
     upload_body_with_markdown(row)
 else:
-    row = cv.collection.get_rows(ID=card_number)[0]
+    exact_ID_filter_params ={
+    'filters': [{filter: {'operator': "number_equals", 'value': {'type': "exact", 'value': card_number}}}]
+    }
+    row = cv.collection.get_rows(filter=exact_ID_filter_params)[0]
 
     if action_type == "edited":
         clear_page(row)
         row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
         upload_body_with_markdown(row)
-        
+
     elif action_type == "closed":
         row.state = 'closed'
 
