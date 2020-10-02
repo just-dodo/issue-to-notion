@@ -21,13 +21,7 @@ github_event_json = json.loads(github_event_str)
 action_type = github_event_json["action"]
 card_number = github_event_json["issue"]["number"]
 card_title = github_event_json["issue"]["title"]
-card_body = github_event_json["issue"]["body"]
 card_link = github_event_json["issue"]["html_url"]
-
-# Make markdown file from issue body
-f= open("body.md","w+")
-f.write(card_body)
-f.close()
 
 # Login and go into collection
 client = NotionClient(token_v2=token)
@@ -44,10 +38,7 @@ if action_type == "opened":
 
     # Add Bookmark for issue
     row.children.add_new(BookmarkBlock, title=card_title, link=card_link)
-
-    # Upload issue body markdown file to row
-    with open("body.md", "r", encoding="utf-8") as mdFile:
-        upload(mdFile,row)
+    upload_body_with_markdown(row)
 else:
     row = cv.collection.get_rows(ID=card_number)[0]
 
@@ -62,7 +53,21 @@ else:
     # TODO
     elif action_type == "reopened":
         row.state = 'open'
-        
+
     elif action_type == "labeled" or action_type == "unlabeled":
         pass
     # TODO
+
+
+def upload_body_with_markdown(row):
+    
+    body = github_event_json["issue"]["body"]
+        
+    # Make markdown file from issue body
+    f= open("body.md","w+")
+    f.write(body)
+    f.close()
+
+    # Upload issue body markdown file to row
+    with open("body.md", "r", encoding="utf-8") as mdFile:
+        upload(mdFile,row)
