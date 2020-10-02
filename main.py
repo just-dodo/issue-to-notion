@@ -17,17 +17,20 @@ with open(path,"r") as f:
 # Convert event string to json
 github_event_json = json.loads(github_event_str)
 
-# Set card title, body and link
-action_type = github_event_json["action"]
-card_number = github_event_json["issue"]["number"]
-card_title = github_event_json["issue"]["title"]
-card_link = github_event_json["issue"]["html_url"]
-
 # Login and go into collection
 client = NotionClient(token_v2=token)
 cv = client.get_collection_view(database_url)
 
 def main():
+    global github_event_json
+    global cv
+
+    # Set card title, body and link
+    action_type = github_event_json["action"]
+    card_number = github_event_json["issue"]["number"]
+    card_title = github_event_json["issue"]["title"]
+    card_link = github_event_json["issue"]["html_url"]
+
     # Check action type
     if action_type == "opened":
 
