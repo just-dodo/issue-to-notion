@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Notion Card Creator
-        uses: dodo4114/issue-to-notion@v1.0.0
+        uses: dodo4114/issue-to-notion@v1.1.0
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           DATABASE_URL: {YOUR DB URL}
