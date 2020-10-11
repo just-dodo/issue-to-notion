@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Notion Card Creator
+      - name: Notion Card Creator2
         uses: dodo4114/issue-to-notion@v1.1.0
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
