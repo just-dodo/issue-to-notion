@@ -9,6 +9,10 @@ from md2notion.upload import upload, convert, uploadBlock
 path = os.environ.get("GITHUB_EVENT_PATH")
 token = os.environ.get("NOTION_TOKEN")
 database_url = os.environ.get("DATABASE_URL")
+property_name = os.environ.get("PROPERTY_NAME","status")
+state_open = os.environ.get("STATE_OPEN","open")
+state_closed = os.environ.get("STATE_CLOSED","closed")
+
 
 # Get the event string from github
 with open(path,"r") as f:
@@ -41,7 +45,7 @@ def main():
         # Add row to notion collection
         row = cv.collection.add_row()
         row.name = "[#"+str(issue_number)+"] "+issue_title
-        row.state = 'open'
+        setattr(row,property_name,state_open)
 
         # Add Bookmark for issue
         row.children.add_new(BookmarkBlock, title=issue_title, link=issue_link)
@@ -55,13 +59,13 @@ def main():
             upload_body_with_markdown(row)
 
         elif action_type == "closed":
-            row.state = 'closed'
+            setattr(row,property_name,state_closed)
 
         elif action_type == "deleted":
             pass
         # TODO
         elif action_type == "reopened":
-            row.state = 'open'
+            setattr(row,property_name,state_open)
 
         elif action_type == "labeled" or action_type == "unlabeled":
             pass
