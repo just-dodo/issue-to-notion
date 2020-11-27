@@ -42,10 +42,7 @@ def main():
     # Check action type
     if action_type == "opened":
 
-        # Add row to notion collection
-        row = cv.collection.add_row()
-        row.name = "[#"+str(issue_number)+"] "+issue_title
-        setattr(row,property_name,state_open)
+        row = createRow(cv,issue_number,issue_title)
 
         # Add Bookmark for issue
         row.children.add_new(BookmarkBlock, title=issue_title, link=issue_link)
@@ -102,5 +99,13 @@ def get_row_with_IssueNumber(number):
     rows = list(filter(lambda row : row.title.startswith(inputNumber),cv.build_query(filter=exact_ID_filter_params).execute()))
     print('filtered rows :',rows)
     return rows[0]
+
+def createRow(cv, issue_number, issue_title):
+    # Add row to notion collection
+    row = cv.collection.add_row()
+    row.name = "[#"+str(issue_number)+"] "+issue_title
+    setattr(row,property_name,state_open)
+
+    return row
 
 main()
