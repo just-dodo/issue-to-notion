@@ -48,7 +48,7 @@ def main():
         row.children.add_new(BookmarkBlock, title=issue_title, link=issue_link)
         upload_body_with_markdown(row)
     else:
-        row = get_row_with_IssueNumber(issue_number)
+        row = get_or_create_row(cv,issue_number,issue_title)
 
         if action_type == "edited":
             clear_page(row)
@@ -98,6 +98,8 @@ def get_row_with_IssueNumber(number):
     }
     rows = list(filter(lambda row : row.title.startswith(inputNumber),cv.build_query(filter=exact_ID_filter_params).execute()))
     print('filtered rows :',rows)
+    if len(rows) == 0:
+        return None
     return rows[0]
 
 def createRow(cv, issue_number, issue_title):
@@ -106,6 +108,12 @@ def createRow(cv, issue_number, issue_title):
     row.name = "[#"+str(issue_number)+"] "+issue_title
     setattr(row,property_name,state_open)
 
+    return row
+
+def get_or_create_row(cv, issue_number, issue_title):
+    row = get_row_with_IssueNumber(issue_number)
+    if not row:
+        row = createRow(cv, issue_number, issue_title)
     return row
 
 main()
