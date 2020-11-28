@@ -2,6 +2,12 @@
 This action make **ISSUEs affect TO NOTION cards**.   
 Issue OPEN/CLOSE/EDIT/REOPEN event will make a corresponding action to your Notion DB
 
+## :wink: Pre-order of Notion-to-Github and get discount!
+We provide issue-to-notion for free! But it's hard to make <b>Notion-to-Github</b>...   
+So we need to check its demand is enough. If you want it, plz answer below typeform.  
+If you answer, you will get 10% discount a year. If you pre-pay, you will get 30% discount a year.   
+Answer HERE : [typeform Link](https://dodo41142727.typeform.com/to/mPP7d1hV)
+
 ## :rocket: WHAT's NEW? (v1.1.1)
 
 ### 1. Custom property & status
@@ -10,7 +16,7 @@ you can choose which DB property set to which status, when issue OPEN/CLOSE
 Edit/Close/Reopen will work even though there isn't a corresponding card.   
 It will create notion card when there isn't!
 
-## Usage
+## :upside_down_face: Usage
 
 Create `.github/workflows/issue-to-notion.yml` in your repository.
 And copy&paste following, and edit appropriately.
