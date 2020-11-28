@@ -48,8 +48,8 @@ jobs:
 | STATE_OPEN | X | open | Your OPEN state name |
 | STATE_CLOSED | X | closed | Your CLOSED state name |
 
-
-
+## Example
+this repo and [this notion DB](https://www.notion.so/dodo4114/aebe312a066c465494fb1eb6997060b0?v=95652d72244a44bd97d39b6057c51dc0)
 
 
 ## Dependency 
