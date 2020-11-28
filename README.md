@@ -5,7 +5,7 @@ Issue OPEN/CLOSE/EDIT/REOPEN event will make a corresponding action to your Noti
 ## :wink: Pre-order of Notion-to-Github and get discount!
 We provide issue-to-notion for free! But it's hard to make <b>Notion-to-Github</b>...   
 So we need to check its demand is enough. If you want it, plz answer below typeform.  
-If you answer, you will get 10% discount a year. If you pre-pay, you will get 30% discount a year.   
+If you answer, you will get 10% discount a year. If you pre-pay 9.9$, you will get 30% discount a year.   
 Answer HERE : [typeform Link](https://dodo41142727.typeform.com/to/mPP7d1hV)
 
 ## :rocket: WHAT's NEW? (v1.1.1)
