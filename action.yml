@@ -1,5 +1,5 @@
 name : issue-to-notion
-description : From github Issue Make Notion Card
+description : Make github Issue Event affect Notion Card
 author : Dohyeon Park
 branding:
   icon : activity
