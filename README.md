@@ -18,6 +18,7 @@ Edit/Close/Reopen will work even though there isn't a corresponding card.
 It will create notion card when there isn't!
 
 ## :upside_down_face: Usage
+### Your DB should have "name" property
 
 Create `.github/workflows/issue-to-notion.yml` in your repository.
 And copy&paste following, and edit appropriately.
